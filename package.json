@@ -1,0 +1,21 @@
+{
+  "name": "npm-download-count",
+  "description": "Retrieve package's number of downloads in a period of time",
+  "keywords": [
+    "npm",
+    "npm-registry"
+  ],
+  "version": "1.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "got": "^6.3.0"
+  },
+  "devDependencies": {
+    "moment": "^2.13.0"
+  },
+  "repository": "github:brillout/npm-download-count",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
