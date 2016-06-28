@@ -18,24 +18,37 @@ module.exports = ({package_name, time_period}) => {
         .then(() =>
             got(url, {json: true})
         )
+        .then(({body}) => {
+            assert(body);
+            assert(body.downloads >= 0 || body.error);
+
+            if( body.downloads >= 0 ) {
+                return body.downloads;
+            }
+
+            if( body.error ) {
+                throw new Error(body.error);
+            }
+
+            assert(false);
+        })
         .catch(error => {
-            assert(error.response);
-            assert(error.response.error);
 
-            const err = error.response.error;
+            if( error.message ) {
+                const msg = error.message;
+                assert( msg.includes('0002') === msg.includes('no stats for this package for this period') );
 
-            assert( err.includes('0002') === err.includes('no stats for this package for this period') );
-            if( err.includes('0002') ) {
-                return {body: {downloads: 0}};
+                if( msg.includes('0002') ) {
+                    return 0;
+                }
             }
 
             throw error;
         })
-        .then(({body}) => {
-            assert(body);
-            assert(body.downloads >= 0);
+        .then(downloads => {
+            assert(downloads >= 0);
 
-            return body.downloads;
+            return downloads;
         })
     );
 
