@@ -1,6 +1,3 @@
-npm-download-counts
-===================
-
 [![Build Status](https://secure.travis-ci.org/brillout/npm-download-counts.svg)](http://travis-ci.org/brillout/npm-download-counts)
 
 *Note: the npm download counts are pretty dodgy for a number of reasons, you probably shouldn't pretend they are accurate.*
